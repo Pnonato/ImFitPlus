@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ImFitPlus</string>
+    <string-array name="activity_levels">
+        <item>Sedentário</item>
+        <item>Leve</item>
+        <item>Moderado</item>
+        <item>Intenso</item>
+    </string-array>
+    <string name="title_activity_personal_data_activity.kt">PersonalDataActivity.kt</string>
+    <string name="title_activity_personal_data">PersonalDataActivity</string>
+    <string name="activity_prompt">Selecione seu nível de atividade</string>
+
 </resources>
