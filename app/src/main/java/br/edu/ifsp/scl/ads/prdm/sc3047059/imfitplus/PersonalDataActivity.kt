@@ -19,6 +19,7 @@ class PersonalDataActivity : AppCompatActivity() {
         val heigth_et = findViewById<EditText>(R.id.height_et)
         val weight_et = findViewById<EditText>(R.id.weight_et)
         val calculate_bt = findViewById<Button>(R.id.calculate_bt)
+        val name_et = findViewById<EditText>(R.id.name_et)
 
 
         calculate_bt.setOnClickListener {
@@ -28,6 +29,7 @@ class PersonalDataActivity : AppCompatActivity() {
                 val imc = final_weight / (final_height * final_height)
                 val intent = Intent(this, ImcResult::class.java)
                 intent.putExtra("IMC_RESULT", imc)
+                intent.putExtra("NAME", name_et.text.toString())
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Preencha os campos corretamente", Toast.LENGTH_SHORT).show()
