@@ -7,4 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".ImcResult">
 
+    <TextView
+        android:id="@+id/imc_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado do IMC"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/imc_category_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categoria:"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imc_result_tv" />
+
+    <Button
+        android:id="@+id/calculate_calories_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Calcular Gasto Calórico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imc_category_tv" />
+
+    <Button
+        android:id="@+id/back_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
