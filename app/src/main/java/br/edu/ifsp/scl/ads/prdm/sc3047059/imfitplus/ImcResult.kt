@@ -23,6 +23,10 @@ class ImcResult : AppCompatActivity() {
 
         val name = intent.getStringExtra("NAME")
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
+        val weight = intent.getDoubleExtra("WEIGHT", 0.0)
+        val height = intent.getDoubleExtra("HEIGHT", 0.0)
+        val age = intent.getStringExtra("AGE")
+        val gender = intent.getStringExtra("GENDER")
         val imcFormatted = String.format("%.2f", imc)
 
         val category = when {
@@ -34,6 +38,15 @@ class ImcResult : AppCompatActivity() {
 
         imcResultTv.text = "Olá, $name\nSeu IMC é $imcFormatted"
         imcCategoryTv.text = "Categoria: $category"
+
+        calculateCaloriesBt.setOnClickListener { 
+            val intentCalories = Intent(this, CaloriesActivity::class.java)
+            intentCalories.putExtra("WEIGHT", weight)
+            intentCalories.putExtra("HEIGHT", height)
+            intentCalories.putExtra("AGE", age)
+            intentCalories.putExtra("GENDER", gender)
+            startActivity(intentCalories)
+        }
 
         backBt.setOnClickListener {
             finish()
