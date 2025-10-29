@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -35,6 +36,13 @@ class CaloriesActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Dados incompletos para calcular TMB", Toast.LENGTH_LONG).show()
             }
+        }
+
+        idealWeightBt.setOnClickListener {
+            val intentIdealWeight = Intent(this, IdealWeight::class.java)
+            intentIdealWeight.putExtra("WEIGHT", weight)
+            intentIdealWeight.putExtra("HEIGHT", height)
+            startActivity(intentIdealWeight)
         }
 
     }
