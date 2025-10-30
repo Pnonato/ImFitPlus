@@ -25,7 +25,7 @@ class ImcResult : AppCompatActivity() {
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
-        val age = intent.getStringExtra("AGE")
+        val age = intent.getIntExtra("AGE", 0)
         val gender = intent.getStringExtra("GENDER")
         val imcFormatted = String.format("%.2f", imc)
 

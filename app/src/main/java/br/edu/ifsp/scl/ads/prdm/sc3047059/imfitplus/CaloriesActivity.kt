@@ -16,8 +16,7 @@ class CaloriesActivity : AppCompatActivity() {
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
-        val ageStr = intent.getStringExtra("AGE")
-        val age = ageStr?.toIntOrNull() ?: 0
+        val age = intent.getIntExtra("AGE", 0)
         val gender = intent.getStringExtra("GENDER")
 
         val calculateTmbBt = findViewById<Button>(R.id.calculate_tmb_bt)
