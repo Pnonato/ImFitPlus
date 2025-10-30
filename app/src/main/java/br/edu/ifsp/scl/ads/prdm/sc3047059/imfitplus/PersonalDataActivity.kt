@@ -2,15 +2,9 @@ package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class PersonalDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,35 +12,50 @@ class PersonalDataActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_personal_data)
 
-        val heigth_et = findViewById<EditText>(R.id.height_et)
-        val weight_et = findViewById<EditText>(R.id.weight_et)
-        val calculate_bt = findViewById<Button>(R.id.calculate_bt)
-        val name_et = findViewById<EditText>(R.id.name_et)
-        val idade_et = findViewById<EditText>(R.id.idade_et)
-        val sexo_rg = findViewById<RadioGroup>(R.id.gender_rg)
+        val heightEt = findViewById<EditText>(R.id.height_et)
+        val weightEt = findViewById<EditText>(R.id.weight_et)
+        val calculateBt = findViewById<Button>(R.id.calculate_bt)
+        val nameEt = findViewById<EditText>(R.id.name_et)
+        val ageEt = findViewById<EditText>(R.id.idade_et)
+        val genderRg = findViewById<RadioGroup>(R.id.gender_rg)
 
-        calculate_bt.setOnClickListener {
-            val final_height = heigth_et.text.toString().toDoubleOrNull()
-            val final_weight = weight_et.text.toString().toDoubleOrNull()
-            val selectedId  = sexo_rg.checkedRadioButtonId
-            val sexo = when(selectedId){
+        calculateBt.setOnClickListener {
+            val name = nameEt.text.toString().trim()
+            val heightStr = heightEt.text.toString().trim()
+            val weightStr = weightEt.text.toString().trim()
+            val ageStr = ageEt.text.toString().trim()
+            val selectedId = genderRg.checkedRadioButtonId
+
+            if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || ageStr.isEmpty() || selectedId == -1) {
+                Toast.makeText(this, "Preencha todos os campos antes de continuar", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            val height = heightStr.toDoubleOrNull()
+            val weight = weightStr.toDoubleOrNull()
+            val age = ageStr.toIntOrNull()
+            val gender = when (selectedId) {
                 R.id.men_rb -> "M"
                 R.id.women_rb -> "F"
                 else -> ""
             }
-            if (final_weight != null && final_height != null && final_weight > 0){
-                val imc = final_weight / (final_height * final_height)
-                val intent = Intent(this, ImcResult::class.java)
-                intent.putExtra("IMC_RESULT", imc)
-                intent.putExtra("NAME", name_et.text.toString())
-                intent.putExtra("WEIGHT", final_weight)
-                intent.putExtra("HEIGHT", final_height)
-                intent.putExtra("AGE", idade_et.text.toString())
-                intent.putExtra("GENDER", sexo)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, "Preencha os campos corretamente", Toast.LENGTH_SHORT).show()
+
+            if (height == null || weight == null || age == null || height <= 0 || weight <= 0 || age <= 0) {
+                Toast.makeText(this, "Digite valores numéricos válidos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            val imc = weight / (height * height)
+
+            val intent = Intent(this, ImcResult::class.java).apply {
+                putExtra("IMC_RESULT", imc)
+                putExtra("NAME", name)
+                putExtra("WEIGHT", weight)
+                putExtra("HEIGHT", height)
+                putExtra("AGE", age)
+                putExtra("GENDER", gender)
+            }
+            startActivity(intent)
         }
     }
 }
