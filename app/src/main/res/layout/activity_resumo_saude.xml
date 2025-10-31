@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResumoSaude">
+
+    <TextView
+        android:id="@+id/imc_result_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Resumo da Saúde"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imc_category_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/imc_category_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Categoria:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imc_result_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/nome_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nome:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imc_category_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/imc_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="IMC:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/nome_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/peso_ideal_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Peso ideal:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/imc_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/gasto_calorico_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Gasto Calórico:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/peso_ideal_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/recomendacao_agua_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Recomendação L/dia:"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/gasto_calorico_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+        <Button
+        android:id="@+id/calcula_ingestao_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Calcular ingestão"
+        android:textAllCaps="false"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/recomendacao_agua_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/back_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

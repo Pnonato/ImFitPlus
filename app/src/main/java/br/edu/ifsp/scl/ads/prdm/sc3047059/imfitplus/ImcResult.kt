@@ -45,6 +45,9 @@ class ImcResult : AppCompatActivity() {
             intentCalories.putExtra("HEIGHT", height)
             intentCalories.putExtra("AGE", age)
             intentCalories.putExtra("GENDER", gender)
+            intentCalories.putExtra("NAME", name)
+            intentCalories.putExtra("CATEGORIA", category)
+            intentCalories.putExtra("IMC_RESULT", imc)
             startActivity(intentCalories)
         }
 

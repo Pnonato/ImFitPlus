@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -22,10 +23,15 @@ class IdealWeight : AppCompatActivity() {
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
+        val nome = intent.getStringExtra("NAME")
+        val categoria = intent.getStringExtra("CATEGORIA")
+        val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
+        val gastoC = intent.getDoubleExtra("GASTOC", 0.0)
+        val idealWeight = 22 * (height * height)
+
 
         calculateIdealWeightBt.setOnClickListener {
             if (height > 0 && weight > 0){
-               val idealWeight = 22 * (height * height)
                 val diff = weight - idealWeight
 
                 val status = when {
@@ -44,7 +50,16 @@ class IdealWeight : AppCompatActivity() {
         }
 
         backBt.setOnClickListener {
-            finish()
+            val intentResumoSaude = Intent(this, ResumoSaude::class.java)
+            intentResumoSaude.putExtra("WEIGHT", weight)
+            intentResumoSaude.putExtra("HEIGHT", height)
+            intentResumoSaude.putExtra("NAME", nome)
+            intentResumoSaude.putExtra("CATEGORIA", categoria)
+            intentResumoSaude.putExtra("IMC_RESULT", imc)
+            intentResumoSaude.putExtra("GASTOC", gastoC)
+            intentResumoSaude.putExtra("PESOIDEAL", idealWeight)
+
+            startActivity(intentResumoSaude)
         }
     }
 }
