@@ -40,9 +40,11 @@ class IdealWeight : AppCompatActivity() {
                 Toast.makeText(this, "Altura e peso inválidos", Toast.LENGTH_LONG).show()
             }
 
-            backBt.setOnClickListener {
-                finish()
-            }
+
+        }
+
+        backBt.setOnClickListener {
+            finish()
         }
     }
 }

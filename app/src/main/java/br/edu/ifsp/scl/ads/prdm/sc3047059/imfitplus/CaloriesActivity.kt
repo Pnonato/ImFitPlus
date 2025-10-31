@@ -22,6 +22,7 @@ class CaloriesActivity : AppCompatActivity() {
         val calculateTmbBt = findViewById<Button>(R.id.calculate_tmb_bt)
         val idealWeightBt = findViewById<Button>(R.id.ideal_weight_bt)
         val tmbResultTv = findViewById<TextView>(R.id.tmb_result_tv)
+        val backBt = findViewById<Button>(R.id.back_bt)
 
         calculateTmbBt.setOnClickListener {
             if (weight > 0 && height > 0 && age > 0 && gender != null){
@@ -30,11 +31,15 @@ class CaloriesActivity : AppCompatActivity() {
                 } else {
                     655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * age)
                 }
-                tmbResultTv.text = "%.0f kcal/dia".format(tmb)
+                tmbResultTv.text = String.format("%,.0f kcal/dia", tmb)
                 tmbResultTv.textSize = 36f
             } else {
                 Toast.makeText(this, "Dados incompletos para calcular TMB", Toast.LENGTH_LONG).show()
             }
+        }
+
+        backBt.setOnClickListener {
+            finish()
         }
 
         idealWeightBt.setOnClickListener {

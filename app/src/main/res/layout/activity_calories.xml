@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:text="Clique no botão para calcular a TMB"
         android:textAlignment="center"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/calculate_tmb_bt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp"/>
 
     <Button
         android:id="@+id/calculate_tmb_bt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Calcular TMB"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@id/tmb_result_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -36,7 +36,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Quero descobrir meu peso ideal!"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/calculate_tmb_bt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/back_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
