@@ -18,44 +18,60 @@ class PersonalDataActivity : AppCompatActivity() {
         val nameEt = findViewById<EditText>(R.id.name_et)
         val ageEt = findViewById<EditText>(R.id.idade_et)
         val genderRg = findViewById<RadioGroup>(R.id.gender_rg)
+        val termsCb = findViewById<CheckBox>(R.id.terms_cb)
+
 
         calculateBt.setOnClickListener {
-            val name = nameEt.text.toString().trim()
-            val heightStr = heightEt.text.toString().trim()
-            val weightStr = weightEt.text.toString().trim()
-            val ageStr = ageEt.text.toString().trim()
-            val selectedId = genderRg.checkedRadioButtonId
+            if (!termsCb.isChecked) {
+                Toast.makeText(
+                    this,
+                    "É necessário concordar com os termos para continuar.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val name = nameEt.text.toString().trim()
+                val heightStr = heightEt.text.toString().trim()
+                val weightStr = weightEt.text.toString().trim()
+                val ageStr = ageEt.text.toString().trim()
+                val selectedId = genderRg.checkedRadioButtonId
 
-            if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || ageStr.isEmpty() || selectedId == -1) {
-                Toast.makeText(this, "Preencha todos os campos antes de continuar", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
+                if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || ageStr.isEmpty() || selectedId == -1) {
+                    Toast.makeText(
+                        this,
+                        "Preencha todos os campos antes de continuar",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                val height = heightStr.toDoubleOrNull()
+                val weight = weightStr.toDoubleOrNull()
+                val age = ageStr.toIntOrNull()
+                val gender = when (selectedId) {
+                    R.id.men_rb -> "M"
+                    R.id.women_rb -> "F"
+                    else -> ""
+                }
+
+                if (height == null || weight == null || age == null || height <= 0 || weight <= 0 || age <= 0) {
+                    Toast.makeText(this, "Digite valores numéricos válidos", Toast.LENGTH_SHORT)
+                        .show()
+                    return@setOnClickListener
+                }
+
+                val imc = weight / (height * height)
+
+                val intent = Intent(this, ImcResult::class.java).apply {
+                    putExtra("IMC_RESULT", imc)
+                    putExtra("NAME", name)
+                    putExtra("WEIGHT", weight)
+                    putExtra("HEIGHT", height)
+                    putExtra("AGE", age)
+                    putExtra("GENDER", gender)
+                }
+                startActivity(intent)
             }
 
-            val height = heightStr.toDoubleOrNull()
-            val weight = weightStr.toDoubleOrNull()
-            val age = ageStr.toIntOrNull()
-            val gender = when (selectedId) {
-                R.id.men_rb -> "M"
-                R.id.women_rb -> "F"
-                else -> ""
-            }
-
-            if (height == null || weight == null || age == null || height <= 0 || weight <= 0 || age <= 0) {
-                Toast.makeText(this, "Digite valores numéricos válidos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val imc = weight / (height * height)
-
-            val intent = Intent(this, ImcResult::class.java).apply {
-                putExtra("IMC_RESULT", imc)
-                putExtra("NAME", name)
-                putExtra("WEIGHT", weight)
-                putExtra("HEIGHT", height)
-                putExtra("AGE", age)
-                putExtra("GENDER", gender)
-            }
-            startActivity(intent)
         }
     }
 }
