@@ -27,6 +27,10 @@ class ResumoSaude : AppCompatActivity() {
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
         val gastoC = intent.getDoubleExtra("GASTOC", 0.0)
         val pesoIdeal = intent.getDoubleExtra("PESOIDEAL", 0.0)
+        val age = intent.getIntExtra("AGE", 0)
+        val gender = intent.getStringExtra("GENDER")
+        val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
+
         val recomendacaoAgua = weight * 0.035
 
         categoriaTv.text = "Categoria: $categoria"

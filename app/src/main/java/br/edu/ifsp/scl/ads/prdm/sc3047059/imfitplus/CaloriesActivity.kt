@@ -21,6 +21,8 @@ class CaloriesActivity : AppCompatActivity() {
         val nome = intent.getStringExtra("NAME")
         val categoria = intent.getStringExtra("CATEGORIA")
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
+        val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
+
 
         val calculateTmbBt = findViewById<Button>(R.id.calculate_tmb_bt)
         val idealWeightBt = findViewById<Button>(R.id.ideal_weight_bt)
@@ -58,6 +60,14 @@ class CaloriesActivity : AppCompatActivity() {
             intentIdealWeight.putExtra("CATEGORIA", categoria)
             intentIdealWeight.putExtra("IMC_RESULT", imc)
             intentIdealWeight.putExtra("GASTOC", tmb)
+            intentIdealWeight.putExtra("AGE", age)
+            intentIdealWeight.putExtra("GENDER", gender)
+            intentIdealWeight.putExtra("ACTIVITY_LVL", activityLvl)
+
+
+
+
+
 
 
             startActivity(intentIdealWeight)

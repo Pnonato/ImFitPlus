@@ -19,6 +19,9 @@ class PersonalDataActivity : AppCompatActivity() {
         val ageEt = findViewById<EditText>(R.id.idade_et)
         val genderRg = findViewById<RadioGroup>(R.id.gender_rg)
         val termsCb = findViewById<CheckBox>(R.id.terms_cb)
+        val activitySpinner = findViewById<Spinner>(R.id.activity_spinner)
+        val selectedActivity = activitySpinner.selectedItem.toString()
+
 
 
         calculateBt.setOnClickListener {
@@ -68,6 +71,8 @@ class PersonalDataActivity : AppCompatActivity() {
                     putExtra("HEIGHT", height)
                     putExtra("AGE", age)
                     putExtra("GENDER", gender)
+                    putExtra("ACTIVITY_LVL", selectedActivity)
+
                 }
                 startActivity(intent)
             }
