@@ -5,9 +5,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import org.w3c.dom.Text
 
 class ResumoSaude : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +20,6 @@ class ResumoSaude : AppCompatActivity() {
         val ingestaoAguaTv = findViewById<TextView>(R.id.recomendacao_agua_tv)
         val calculaAguaBt = findViewById<Button>(R.id.calcula_ingestao_bt)
 
-
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
         val nome = intent.getStringExtra("NAME")
@@ -31,21 +27,16 @@ class ResumoSaude : AppCompatActivity() {
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
         val gastoC = intent.getDoubleExtra("GASTOC", 0.0)
         val pesoIdeal = intent.getDoubleExtra("PESOIDEAL", 0.0)
-        val recomendacaoAgua = weight * 0.35
+        val recomendacaoAgua = weight * 0.035
 
-        categoriaTv.text = categoria
-        nomeTv.text = nome
+        categoriaTv.text = "Categoria: $categoria"
+        nomeTv.text = "Nome: $nome"
         imcTv.text = String.format("IMC: %,.2f", imc)
-        gastoCaloricoTv.text =  String.format("GASTO CALÓRICO: %,.2f", gastoC)
-        pesoIdealTv.text =  String.format("PESO IDEAK:%,.1f", pesoIdeal)
-
+        gastoCaloricoTv.text = String.format("Gasto Calórico: %,.0f kcal/dia", gastoC)
+        pesoIdealTv.text = String.format("Peso Ideal: %,.1f kg", pesoIdeal)
 
         calculaAguaBt.setOnClickListener {
-            ingestaoAguaTv.text = String.format("INGESTÃO L/DIA: %,.2f", recomendacaoAgua)
+            ingestaoAguaTv.text = String.format("Ingestão recomendada: %,.2f L/dia", recomendacaoAgua)
         }
-
-
-
-
     }
 }
