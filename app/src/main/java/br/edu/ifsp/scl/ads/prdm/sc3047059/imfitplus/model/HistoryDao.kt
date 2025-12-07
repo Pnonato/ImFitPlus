@@ -1,6 +1,5 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model
 
-import History
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query

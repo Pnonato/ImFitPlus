@@ -1,3 +1,5 @@
+package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.AppDatabase
+import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.Usuario
+import kotlinx.coroutines.launch
 
 class PersonalDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +67,22 @@ class PersonalDataActivity : AppCompatActivity() {
                 }
 
                 val imc = weight / (height * height)
+
+                val db = AppDatabase.getDatabase(this)
+                val userDao = db.usuarioDao()
+
+                val user = Usuario(
+                    nome = name,
+                    idade = age,
+                    sexo = gender,
+                    altura = height,
+                    peso = weight,
+                    nivelAtividade = selectedActivity
+                )
+
+                lifecycleScope.launch {
+                    userDao.insertUser(user)
+                }
 
                 val intent = Intent(this, ImcResult::class.java).apply {
                     putExtra("IMC_RESULT", imc)
