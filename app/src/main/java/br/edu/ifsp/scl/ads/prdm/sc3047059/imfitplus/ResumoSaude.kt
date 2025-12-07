@@ -5,6 +5,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.AppDatabase
+import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.History
+import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.HistoryDao
+import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 class ResumoSaude : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +38,25 @@ class ResumoSaude : AppCompatActivity() {
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
 
         val recomendacaoAgua = weight * 0.035
+        val imcFinal = String.format("%.2f", imc).toDouble()
+        val pesoIdealFinal = String.format("%.1f", pesoIdeal).toDouble()
+        val gastoCFinal = String.format("%.2f", gastoC).toDouble()
+
+        val db = AppDatabase.getDatabase(this)
+        val historyDao = db.historyDao()
+
+        val history = History(
+            userName = nome ?: "",
+            imcCategory = categoria ?: "",
+            imc = imcFinal,
+            tmb = gastoCFinal,
+            idealWeight = pesoIdealFinal
+        )
+
+        lifecycleScope.launch {
+            historyDao.insertHistory(history)
+        }
+
 
         categoriaTv.text = "Categoria: $categoria"
         nomeTv.text = "Nome: $nome"
