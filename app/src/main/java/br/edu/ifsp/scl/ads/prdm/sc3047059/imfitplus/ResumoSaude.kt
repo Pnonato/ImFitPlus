@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -25,6 +26,8 @@ class ResumoSaude : AppCompatActivity() {
         val gastoCaloricoTv = findViewById<TextView>(R.id.gasto_calorico_tv)
         val ingestaoAguaTv = findViewById<TextView>(R.id.recomendacao_agua_tv)
         val calculaAguaBt = findViewById<Button>(R.id.calcula_ingestao_bt)
+        val dadosCadastradosBt = findViewById<Button>(R.id.dados_cadastrados_bt)
+
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
@@ -66,6 +69,11 @@ class ResumoSaude : AppCompatActivity() {
 
         calculaAguaBt.setOnClickListener {
             ingestaoAguaTv.text = String.format("Ingestão recomendada: %,.2f L/dia", recomendacaoAgua)
+        }
+
+        dadosCadastradosBt.setOnClickListener {
+            val dadosCadastrados = Intent(this, DataBaseView::class.java)
+            startActivity(dadosCadastrados)
         }
     }
 }
