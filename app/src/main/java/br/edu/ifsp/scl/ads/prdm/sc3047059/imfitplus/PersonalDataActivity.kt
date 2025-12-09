@@ -23,8 +23,10 @@ class PersonalDataActivity : AppCompatActivity() {
         val ageEt = findViewById<EditText>(R.id.idade_et)
         val genderRg = findViewById<RadioGroup>(R.id.gender_rg)
         val termsCb = findViewById<CheckBox>(R.id.terms_cb)
+        val backBt = findViewById<Button>(R.id.back_bt)
         val activitySpinner = findViewById<Spinner>(R.id.activity_spinner)
         val selectedActivity = activitySpinner.selectedItem.toString()
+
 
 
 
@@ -96,6 +98,11 @@ class PersonalDataActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+
+        }
+
+        backBt.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
 
         }
     }
