@@ -16,17 +16,31 @@ class DataBaseView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_data_base_view)
-        val backButton = findViewById<Button>(R.id.back_bt)
 
+
+        val weight = intent.getDoubleExtra("WEIGHT", 0.0)
+        val height = intent.getDoubleExtra("HEIGHT", 0.0)
+        val nome = intent.getStringExtra("NAME")
+        val categoria = intent.getStringExtra("CATEGORIA")
+        val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
+        val gastoC = intent.getDoubleExtra("GASTOC", 0.0)
+        val pesoIdeal = intent.getDoubleExtra("PESOIDEAL", 0.0)
+        val age = intent.getIntExtra("AGE", 0)
+        val gender = intent.getStringExtra("GENDER")
+        val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
+        val recomendacaoAgua = intent.getDoubleExtra("RECOMENDACAO_AGUA", 0.0)
+
+        val backButton = findViewById<Button>(R.id.back_bt)
         val usersTv = findViewById<TextView>(R.id.users_tv)
         val historyTv = findViewById<TextView>(R.id.history_tv)
+
+
 
         val db = AppDatabase.getDatabase(this)
         val userDao = db.usuarioDao()
         val historyDao = db.historyDao()
 
         lifecycleScope.launch {
-
             val users = userDao.getUsers()
             val usersText = buildString {
                 append("Usuários cadastrados:\n\n")

@@ -75,6 +75,17 @@ class ResumoSaude : AppCompatActivity() {
 
         dadosCadastradosBt.setOnClickListener {
             val dadosCadastrados = Intent(this, DataBaseView::class.java)
+            dadosCadastrados.putExtra("WEIGHT", weight)
+            dadosCadastrados.putExtra("HEIGHT", height)
+            dadosCadastrados.putExtra("NAME", nome)
+            dadosCadastrados.putExtra("CATEGORIA", categoria)
+            dadosCadastrados.putExtra("IMC_RESULT", imcFinal)
+            dadosCadastrados.putExtra("GASTOC", gastoCFinal)
+            dadosCadastrados.putExtra("PESOIDEAL", pesoIdealFinal)
+            dadosCadastrados.putExtra("AGE", age)
+            dadosCadastrados.putExtra("GENDER", gender)
+            dadosCadastrados.putExtra("ACTIVITY_LVL", activityLvl)
+            dadosCadastrados.putExtra("RECOMENDACAO_AGUA", recomendacaoAgua)
             startActivity(dadosCadastrados)
         }
 
