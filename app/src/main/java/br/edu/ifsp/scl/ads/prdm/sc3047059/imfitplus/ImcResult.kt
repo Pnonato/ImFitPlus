@@ -54,7 +54,7 @@ class ImcResult : AppCompatActivity() {
         }
 
         backBt.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }

@@ -49,7 +49,7 @@ class CaloriesActivity : AppCompatActivity() {
         }
 
         backBt.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         idealWeightBt.setOnClickListener {
@@ -63,13 +63,6 @@ class CaloriesActivity : AppCompatActivity() {
             intentIdealWeight.putExtra("AGE", age)
             intentIdealWeight.putExtra("GENDER", gender)
             intentIdealWeight.putExtra("ACTIVITY_LVL", activityLvl)
-
-
-
-
-
-
-
             startActivity(intentIdealWeight)
         }
 

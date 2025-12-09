@@ -7,9 +7,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import org.w3c.dom.Text
 
 class IdealWeight : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +16,7 @@ class IdealWeight : AppCompatActivity() {
 
         val idealWeightResultTv = findViewById<TextView>(R.id.idealWeight_result_tv)
         val calculateIdealWeightBt = findViewById<Button>(R.id.calculate_idealWeight_bt)
+        val nextBt = findViewById<Button>(R.id.next_bt)
         val backBt = findViewById<Button>(R.id.back_bt)
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
@@ -31,12 +29,10 @@ class IdealWeight : AppCompatActivity() {
         val gender = intent.getStringExtra("GENDER")
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
 
-
         val idealWeight = 22 * (height * height)
 
-
         calculateIdealWeightBt.setOnClickListener {
-            if (height > 0 && weight > 0){
+            if (height > 0 && weight > 0) {
                 val diff = weight - idealWeight
 
                 val status = when {
@@ -50,11 +46,13 @@ class IdealWeight : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Altura e peso inválidos", Toast.LENGTH_LONG).show()
             }
-
-
         }
 
         backBt.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        nextBt.setOnClickListener {
             val intentResumoSaude = Intent(this, ResumoSaude::class.java)
             intentResumoSaude.putExtra("WEIGHT", weight)
             intentResumoSaude.putExtra("HEIGHT", height)
@@ -66,8 +64,6 @@ class IdealWeight : AppCompatActivity() {
             intentResumoSaude.putExtra("AGE", age)
             intentResumoSaude.putExtra("GENDER", gender)
             intentResumoSaude.putExtra("ACTIVITY_LVL", activityLvl)
-
-
 
             startActivity(intentResumoSaude)
         }

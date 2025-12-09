@@ -1,5 +1,6 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -69,7 +70,7 @@ class DataBaseView : AppCompatActivity() {
 
 
         backButton.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
     }

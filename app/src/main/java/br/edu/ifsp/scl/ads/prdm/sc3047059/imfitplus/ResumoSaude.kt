@@ -78,5 +78,9 @@ class ResumoSaude : AppCompatActivity() {
             startActivity(dadosCadastrados)
         }
 
+        backBt.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
     }
 }
