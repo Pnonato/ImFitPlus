@@ -69,6 +69,7 @@ class DataBaseView : AppCompatActivity() {
                     val imcFormatado = String.format("%.2f", h.imc)
                     val tmbFormatado = String.format("%.0f kcal/dia", h.tmb)
                     val pesoIdealFormatado = String.format("%.1f kg", h.idealWeight)
+                    val ingestaoAguaF = String.format("%.2f L/dia", h.idealWeight)
 
                     append("ID: ${h.id}\n")
                     append("Nome: ${h.userName}\n")
@@ -76,6 +77,7 @@ class DataBaseView : AppCompatActivity() {
                     append("Categoria IMC: ${h.imcCategory}\n")
                     append("TMB (gasto): $tmbFormatado\n")
                     append("Peso ideal: $pesoIdealFormatado\n")
+                    append("Ingestão agua: $ingestaoAguaF\n")
                     append("\n----------------------\n\n")
                 }
             }

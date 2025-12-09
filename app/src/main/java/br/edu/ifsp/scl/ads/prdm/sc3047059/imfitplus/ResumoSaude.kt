@@ -55,7 +55,8 @@ class ResumoSaude : AppCompatActivity() {
             imcCategory = categoria ?: "",
             imc = imcFinal,
             tmb = gastoCFinal,
-            idealWeight = pesoIdealFinal
+            idealWeight = pesoIdealFinal,
+            ingestaoAgua = recomendacaoAgua
         )
 
         lifecycleScope.launch {

@@ -11,5 +11,6 @@ data class History(
     val imcCategory: String,
     val tmb: Double,
     val idealWeight: Double,
+    val ingestaoAgua: Double,
     val timestamp: Long = System.currentTimeMillis()
 )
