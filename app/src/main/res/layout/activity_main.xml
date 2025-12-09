@@ -28,12 +28,26 @@
         android:id="@+id/start_bt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:text="Comece Aqui!"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/dados_cadastrados_bt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ver Dados Cadastrados!"
         android:textAllCaps="false"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/start_bt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

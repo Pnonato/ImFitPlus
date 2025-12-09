@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ class DataBaseView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_data_base_view)
+        val backButton = findViewById<Button>(R.id.back_bt)
 
         val usersTv = findViewById<TextView>(R.id.users_tv)
         val historyTv = findViewById<TextView>(R.id.history_tv)
@@ -64,5 +66,11 @@ class DataBaseView : AppCompatActivity() {
             }
             historyTv.text = historyText
         }
+
+
+        backButton.setOnClickListener {
+            finish()
+        }
+
     }
 }

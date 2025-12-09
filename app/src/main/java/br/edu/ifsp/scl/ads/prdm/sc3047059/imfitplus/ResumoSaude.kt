@@ -27,6 +27,8 @@ class ResumoSaude : AppCompatActivity() {
         val ingestaoAguaTv = findViewById<TextView>(R.id.recomendacao_agua_tv)
         val calculaAguaBt = findViewById<Button>(R.id.calcula_ingestao_bt)
         val dadosCadastradosBt = findViewById<Button>(R.id.dados_cadastrados_bt)
+        val backBt = findViewById<Button>(R.id.back_bt)
+
 
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
@@ -75,5 +77,6 @@ class ResumoSaude : AppCompatActivity() {
             val dadosCadastrados = Intent(this, DataBaseView::class.java)
             startActivity(dadosCadastrados)
         }
+
     }
 }

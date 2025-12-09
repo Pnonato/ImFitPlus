@@ -15,9 +15,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val startButton = findViewById<Button>(R.id.start_bt)
+        val dadosCadastradosBt = findViewById<Button>(R.id.dados_cadastrados_bt)
+
         startButton.setOnClickListener {
             val intent = Intent(this, PersonalDataActivity::class.java)
             startActivity(intent)
+        }
+
+        dadosCadastradosBt.setOnClickListener {
+            val dataBaseView = Intent(this, DataBaseView::class.java)
+            startActivity(dataBaseView)
+
         }
     }
 }
