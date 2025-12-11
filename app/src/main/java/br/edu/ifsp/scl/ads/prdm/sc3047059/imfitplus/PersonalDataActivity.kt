@@ -25,12 +25,12 @@ class PersonalDataActivity : AppCompatActivity() {
         val termsCb = findViewById<CheckBox>(R.id.terms_cb)
         val backBt = findViewById<Button>(R.id.back_bt)
         val activitySpinner = findViewById<Spinner>(R.id.activity_spinner)
-        val selectedActivity = activitySpinner.selectedItem.toString()
 
 
 
 
         calculateBt.setOnClickListener {
+            val selectedActivity = activitySpinner.selectedItem.toString()
             if (!termsCb.isChecked) {
                 Toast.makeText(
                     this,
