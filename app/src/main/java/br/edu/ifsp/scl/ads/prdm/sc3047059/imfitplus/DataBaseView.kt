@@ -17,7 +17,6 @@ class DataBaseView : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_data_base_view)
 
-
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
         val nome = intent.getStringExtra("NAME")
@@ -29,19 +28,21 @@ class DataBaseView : AppCompatActivity() {
         val gender = intent.getStringExtra("GENDER")
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
         val recomendacaoAgua = intent.getDoubleExtra("RECOMENDACAO_AGUA", 0.0)
+        val userId = intent.getIntExtra("USER_ID", -1)
+
 
         val backButton = findViewById<Button>(R.id.back_bt)
         val usersTv = findViewById<TextView>(R.id.users_tv)
         val historyTv = findViewById<TextView>(R.id.history_tv)
-
-
 
         val db = AppDatabase.getDatabase(this)
         val userDao = db.usuarioDao()
         val historyDao = db.historyDao()
 
         lifecycleScope.launch {
-            val users = userDao.getUsers()
+            val users =
+                if (userId != -1) userDao.getUsersById(userId)
+                else userDao.getUsers()
             val usersText = buildString {
                 append("Usuários cadastrados:\n\n")
                 for (u in users) {
@@ -61,23 +62,26 @@ class DataBaseView : AppCompatActivity() {
             }
             usersTv.text = usersText
 
-            val historyList = historyDao.getAllHistory()
+            val historyList =
+                if (userId != -1) historyDao.getHistoryByUser(userId)
+                else historyDao.getAllHistory()
+
             val historyText = buildString {
-                append("Histórico:\n\n")
+                append("Histórico do usuário:\n\n")
                 for (h in historyList) {
 
                     val imcFormatado = String.format("%.2f", h.imc)
                     val tmbFormatado = String.format("%.0f kcal/dia", h.tmb)
                     val pesoIdealFormatado = String.format("%.1f kg", h.idealWeight)
-                    val ingestaoAguaF = String.format("%.2f L/dia", h.idealWeight)
+                    val ingestaoAguaF = String.format("%.2f L/dia", h.ingestaoAgua)
 
-                    append("ID: ${h.id}\n")
-                    append("Nome: ${h.userName}\n")
+                    append("ID Histórico: ${h.id}\n")
+                    append("Usuário: ${h.userName}\n")
                     append("IMC: $imcFormatado\n")
-                    append("Categoria IMC: ${h.imcCategory}\n")
-                    append("TMB (gasto): $tmbFormatado\n")
-                    append("Peso ideal: $pesoIdealFormatado\n")
-                    append("Ingestão agua: $ingestaoAguaF\n")
+                    append("Categoria: ${h.imcCategory}\n")
+                    append("TMB: $tmbFormatado\n")
+                    append("Peso Ideal: $pesoIdealFormatado\n")
+                    append("Ingestão Água: $ingestaoAguaF\n")
                     append("\n----------------------\n\n")
                 }
             }
@@ -86,7 +90,8 @@ class DataBaseView : AppCompatActivity() {
 
 
         backButton.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            val telaInicial = Intent(this, MainActivity::class.java)
+            startActivity(telaInicial)
         }
 
     }

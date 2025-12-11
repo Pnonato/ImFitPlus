@@ -82,21 +82,23 @@ class PersonalDataActivity : AppCompatActivity() {
                     nivelAtividade = selectedActivity
                 )
 
+
                 lifecycleScope.launch {
-                    userDao.insertUser(user)
-                }
+                    val userId = userDao.insertUser(user).toInt()
 
-                val intent = Intent(this, ImcResult::class.java).apply {
-                    putExtra("IMC_RESULT", imc)
-                    putExtra("NAME", name)
-                    putExtra("WEIGHT", weight)
-                    putExtra("HEIGHT", height)
-                    putExtra("AGE", age)
-                    putExtra("GENDER", gender)
-                    putExtra("ACTIVITY_LVL", selectedActivity)
+                    val intent = Intent(this@PersonalDataActivity, ImcResult::class.java).apply {
+                        putExtra("USER_ID", userId)
+                        putExtra("IMC_RESULT", imc)
+                        putExtra("NAME", name)
+                        putExtra("WEIGHT", weight)
+                        putExtra("HEIGHT", height)
+                        putExtra("AGE", age)
+                        putExtra("GENDER", gender)
+                        putExtra("ACTIVITY_LVL", selectedActivity)
+                    }
 
+                    startActivity(intent)
                 }
-                startActivity(intent)
             }
 
         }

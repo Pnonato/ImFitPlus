@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         dadosCadastradosBt.setOnClickListener {
             val dataBaseView = Intent(this, DataBaseView::class.java)
+            dataBaseView.putExtra("USER_ID", -1)
             startActivity(dataBaseView)
 
         }

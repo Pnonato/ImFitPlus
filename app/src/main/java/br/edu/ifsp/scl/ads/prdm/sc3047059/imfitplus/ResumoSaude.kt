@@ -28,8 +28,7 @@ class ResumoSaude : AppCompatActivity() {
         val calculaAguaBt = findViewById<Button>(R.id.calcula_ingestao_bt)
         val dadosCadastradosBt = findViewById<Button>(R.id.dados_cadastrados_bt)
         val backBt = findViewById<Button>(R.id.back_bt)
-
-
+        val userId = intent.getIntExtra("USER_ID", -1)
 
         val weight = intent.getDoubleExtra("WEIGHT", 0.0)
         val height = intent.getDoubleExtra("HEIGHT", 0.0)
@@ -42,6 +41,7 @@ class ResumoSaude : AppCompatActivity() {
         val gender = intent.getStringExtra("GENDER")
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
 
+
         val recomendacaoAgua = weight * 0.035
         val imcFinal = String.format("%.2f", imc).toDouble()
         val pesoIdealFinal = String.format("%.1f", pesoIdeal).toDouble()
@@ -50,19 +50,22 @@ class ResumoSaude : AppCompatActivity() {
         val db = AppDatabase.getDatabase(this)
         val historyDao = db.historyDao()
 
-        val history = History(
-            userName = nome ?: "",
-            imcCategory = categoria ?: "",
-            imc = imcFinal,
-            tmb = gastoCFinal,
-            idealWeight = pesoIdealFinal,
-            ingestaoAgua = recomendacaoAgua
-        )
-
         lifecycleScope.launch {
+
+            val historyList = historyDao.getHistoryByUser(userId)
+
+            val history = History(
+                userId = userId,
+                userName = nome ?: "",
+                imc = imcFinal,
+                imcCategory = categoria ?: "",
+                tmb = gastoCFinal,
+                idealWeight = pesoIdealFinal,
+                ingestaoAgua = recomendacaoAgua
+            )
+
             historyDao.insertHistory(history)
         }
-
 
         categoriaTv.text = "Categoria: $categoria"
         nomeTv.text = "Nome: $nome"
@@ -87,6 +90,10 @@ class ResumoSaude : AppCompatActivity() {
             dadosCadastrados.putExtra("GENDER", gender)
             dadosCadastrados.putExtra("ACTIVITY_LVL", activityLvl)
             dadosCadastrados.putExtra("RECOMENDACAO_AGUA", recomendacaoAgua)
+            dadosCadastrados.putExtra("USER_ID", userId)
+            dadosCadastrados.putExtra("USER_ID", userId)
+
+
             startActivity(dadosCadastrados)
         }
 

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "history")
 data class History(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val userId: Int,
     val userName: String,
     val imc: Double,
     val imcCategory: String,
