@@ -40,7 +40,7 @@
         android:id="@+id/dados_cadastrados_bt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ver Dados Cadastrados!"
+        android:text="Ver Todos Os Dados Cadastrados!"
         android:textAllCaps="false"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="32dp"
