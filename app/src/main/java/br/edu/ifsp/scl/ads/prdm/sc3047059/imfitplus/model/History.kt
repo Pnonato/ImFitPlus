@@ -13,5 +13,6 @@ data class History(
     val tmb: Double,
     val idealWeight: Double,
     val ingestaoAgua: Double,
+    val freqCardiaca: Int,
     val timestamp: Long = System.currentTimeMillis()
 )

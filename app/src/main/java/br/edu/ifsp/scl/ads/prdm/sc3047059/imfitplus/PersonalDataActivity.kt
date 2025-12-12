@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus
 
 import android.content.Intent
+import android.icu.util.LocaleData
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.AppDatabase
 import br.edu.ifsp.scl.ads.prdm.sc3047059.imfitplus.model.Usuario
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.Period
 
 class PersonalDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,10 @@ class PersonalDataActivity : AppCompatActivity() {
         val backBt = findViewById<Button>(R.id.back_bt)
         val activitySpinner = findViewById<Spinner>(R.id.activity_spinner)
 
+        fun calculateAge(birthDate: LocalDate): Int {
+            val currentDate = LocalDate.now()
+            return Period.between(birthDate, currentDate).years
+        }
 
 
 
@@ -42,9 +49,11 @@ class PersonalDataActivity : AppCompatActivity() {
                 val heightStr = heightEt.text.toString().trim()
                 val weightStr = weightEt.text.toString().trim()
                 val ageStr = ageEt.text.toString().trim()
+                val ageDate = LocalDate.parse(ageStr)
+                val idadeAnos = calculateAge(ageDate)
                 val selectedId = genderRg.checkedRadioButtonId
 
-                if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || ageStr.isEmpty() || selectedId == -1) {
+                if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || selectedId == -1) {
                     Toast.makeText(
                         this,
                         "Preencha todos os campos antes de continuar",
@@ -62,7 +71,7 @@ class PersonalDataActivity : AppCompatActivity() {
                     else -> ""
                 }
 
-                if (height == null || weight == null || age == null || height <= 0 || weight <= 0 || age <= 0) {
+                if (height == null || weight == null || height <= 0 || weight <= 0) {
                     Toast.makeText(this, "Digite valores numéricos válidos", Toast.LENGTH_SHORT)
                         .show()
                     return@setOnClickListener
@@ -75,7 +84,8 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 val user = Usuario(
                     nome = name,
-                    idade = age,
+                    idade = ageStr,
+                    idadeAnos = idadeAnos,
                     sexo = gender,
                     altura = height,
                     peso = weight,
@@ -95,6 +105,7 @@ class PersonalDataActivity : AppCompatActivity() {
                         putExtra("AGE", age)
                         putExtra("GENDER", gender)
                         putExtra("ACTIVITY_LVL", selectedActivity)
+                        putExtra("IDADE_ANOS", idadeAnos)
                     }
 
                     startActivity(intent)

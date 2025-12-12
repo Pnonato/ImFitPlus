@@ -29,6 +29,8 @@ class IdealWeight : AppCompatActivity() {
         val gender = intent.getStringExtra("GENDER")
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
         val userId = intent.getIntExtra("USER_ID", -1)
+        val idadeAnos = intent.getIntExtra("IDADE_ANOS", -1)
+
 
 
         val idealWeight = 22 * (height * height)
@@ -67,6 +69,8 @@ class IdealWeight : AppCompatActivity() {
             intentResumoSaude.putExtra("GENDER", gender)
             intentResumoSaude.putExtra("ACTIVITY_LVL", activityLvl)
             intentResumoSaude.putExtra("USER_ID", userId)
+            intentResumoSaude.putExtra("IDADE_ANOS", idadeAnos)
+
 
 
             startActivity(intentResumoSaude)

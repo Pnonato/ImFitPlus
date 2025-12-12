@@ -29,6 +29,8 @@ class ImcResult : AppCompatActivity() {
         val gender = intent.getStringExtra("GENDER")
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
         val userId = intent.getIntExtra("USER_ID", -1)
+        val idadeAnos = intent.getIntExtra("IDADE_ANOS", -1)
+
         val imcFormatted = String.format("%.2f", imc)
 
         val category = when {
@@ -52,6 +54,8 @@ class ImcResult : AppCompatActivity() {
             intentCalories.putExtra("IMC_RESULT", imc)
             intentCalories.putExtra("ACTIVITY_LVL", activityLvl)
             intentCalories.putExtra("USER_ID", userId)
+            intentCalories.putExtra("IDADE_ANOS", idadeAnos)
+
             startActivity(intentCalories)
         }
 

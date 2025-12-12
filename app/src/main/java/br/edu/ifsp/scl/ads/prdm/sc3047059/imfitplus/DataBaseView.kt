@@ -29,6 +29,8 @@ class DataBaseView : AppCompatActivity() {
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
         val recomendacaoAgua = intent.getDoubleExtra("RECOMENDACAO_AGUA", 0.0)
         val userId = intent.getIntExtra("USER_ID", -1)
+        val idadeAnos = intent.getIntExtra("IDADE_ANOS", -1)
+
 
 
         val backButton = findViewById<Button>(R.id.back_bt)
@@ -52,7 +54,8 @@ class DataBaseView : AppCompatActivity() {
 
                     append("ID: ${u.id}\n")
                     append("Nome: ${u.nome}\n")
-                    append("Idade: ${u.idade} anos\n")
+                    append("Data Nascimento: ${u.idade}\n")
+                    append("Idade: ${u.idadeAnos} anos\n")
                     append("Sexo: ${u.sexo}\n")
                     append("Altura: $alturaFormatada\n")
                     append("Peso: $pesoFormatado\n")
@@ -76,12 +79,13 @@ class DataBaseView : AppCompatActivity() {
                     val ingestaoAguaF = String.format("%.2f L/dia", h.ingestaoAgua)
 
                     append("ID Histórico: ${h.id}\n")
-                    append("Usuário: ${h.userName}\n")
                     append("IMC: $imcFormatado\n")
                     append("Categoria: ${h.imcCategory}\n")
                     append("TMB: $tmbFormatado\n")
                     append("Peso Ideal: $pesoIdealFormatado\n")
                     append("Ingestão Água: $ingestaoAguaF\n")
+                    append("Frequencia Cardiaca Maxima: ${h.freqCardiaca}\n")
+
                     append("\n----------------------\n\n")
                 }
             }

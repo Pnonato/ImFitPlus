@@ -23,6 +23,8 @@ class CaloriesActivity : AppCompatActivity() {
         val imc = intent.getDoubleExtra("IMC_RESULT", 0.0)
         val activityLvl = intent.getStringExtra("ACTIVITY_LVL")
         val userId = intent.getIntExtra("USER_ID", -1)
+        val idadeAnos = intent.getIntExtra("IDADE_ANOS", -1)
+
 
 
 
@@ -32,16 +34,16 @@ class CaloriesActivity : AppCompatActivity() {
         val backBt = findViewById<Button>(R.id.back_bt)
 
         val tmb = if (gender == "M") {
-            66 + (13.7 * weight) + (5 * height * 100) - (6.8 * age)
+            66 + (13.7 * weight) + (5 * height * 100) - (6.8 * idadeAnos)
         } else {
-            655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * age) }
+            655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * idadeAnos) }
 
         calculateTmbBt.setOnClickListener {
-            if (weight > 0 && height > 0 && age > 0 && gender != null){
+            if (weight > 0 && height > 0 && idadeAnos > 0 && gender != null){
                 val tmb = if (gender == "M") {
-                    66 + (13.7 * weight) + (5 * height * 100) - (6.8 * age)
+                    66 + (13.7 * weight) + (5 * height * 100) - (6.8 * idadeAnos)
                 } else {
-                    655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * age)
+                    655 + (9.6 * weight) + (1.8 * height * 100) - (4.7 * idadeAnos)
                 }
                 tmbResultTv.text = String.format("%,.0f kcal/dia", tmb)
                 tmbResultTv.textSize = 36f
@@ -66,6 +68,8 @@ class CaloriesActivity : AppCompatActivity() {
             intentIdealWeight.putExtra("GENDER", gender)
             intentIdealWeight.putExtra("ACTIVITY_LVL", activityLvl)
             intentIdealWeight.putExtra("USER_ID", userId)
+            intentIdealWeight.putExtra("IDADE_ANOS", idadeAnos)
+
             startActivity(intentIdealWeight)
         }
 
